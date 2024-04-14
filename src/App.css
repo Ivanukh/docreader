@@ -1,38 +1,114 @@
-.App {
-  text-align: center;
+html,
+body {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#root {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.layout {
+  min-height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.content {
+  flex: 1;
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25vw;
+  height: 100%;
+  overflow: auto;
+  border: 1px solid #d4d4d5;
+  border-right: 0;
+  border-top: 0;
+  scrollbar-width: auto;
+}
+
+.right {
+  position: absolute;
+  left: 25vw;
+  top: 0;
+  width: calc(100% - 25vw);
+  height: 100%;
+  overflow: auto;
+  border: 1px solid #d4d4d5;
+  border-top: 0;
+
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, .1);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, .25);
+  -webkit-transition: color .2s ease;
+  transition: color .2s ease;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+}
+
+.text.white {
+  color: #FFFFFF;
+}
+
+.text.gray {
+  color: #CCCCCC !important;
+}
+
+.text.black {
+  color: #1B1C1D;
+}
+
+.text.yellow {
+  color: #F2C61F;
+}
+
+
+.text.violet {
+  color: #6435c9;
+}
+
+.text.darkviolet {
+  color: #422286;
+}
+
+.text.red {
+  color: #db2828;
+}
+
+.text.black {
+  color: #1b1c1d;
+}
+
+.text-right {
+  text-align: right;
 }
