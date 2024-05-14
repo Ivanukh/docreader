@@ -3,47 +3,27 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import TobBar from './comonents/TopBar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import { Form, ListGroup } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import Footer from './comonents/Footer';
 import { useEffect, useState } from 'react';
+import Content from './comonents/Content';
+import { LeftBar, SectionProps } from './comonents/LeftBar';
 
-const TestText = () => {
-  const groups = [];
-  for (let i = 1; i < 10; i++) {
-    groups.push('group_' + i);
-  }
 
-  return (
-    <Container>
-      {groups.map((g) => {
-        const items = [];
-        for (let i = 1; i < 6; i++) {
-          // groups.push('group ' + i);
-          items.push(i)
-        }
-        return (
-          <ListGroup key={g} style={{ margin: 10 }}>
-            <ListGroup.Item className='text violet text-right'>{g}</ListGroup.Item>
-            {items.map((i) => <ListGroup.Item action key={`${g}_${i}`}>{i}<br /></ListGroup.Item>)}
-          </ListGroup>
-        )
-      })}
-    </Container>
-
-  )
+type Settings = {
+  title: string,
+  sections: SectionProps[]
 }
 
-
 function App() {
-  const [settings, setSettings] = useState({
-    title: window.location.host
+  const [settings, setSettings] = useState<Settings>({
+    title: window.location.host,
+    sections: []
   });
 
   const [fetchCounter, setFetchCounter] = useState(0);
   const incCounter = () => setFetchCounter((prevState) => (prevState + 1));
   const decCounter = () => setFetchCounter((prevState) => (prevState - 1));
-
 
   function getSettings() {
     fetch(window.location.origin + '/docs/settings.json').
@@ -94,10 +74,10 @@ function App() {
         </Row>
         <div className="content">
           <div className="left">
-            <TestText />
+            <LeftBar sections={settings.sections} />
           </div>
-          <div className="right">
-            <TestText />
+          <div className="right" style={{ padding: '20px' }}>
+            <Content />
           </div>
         </div>
         <Footer />

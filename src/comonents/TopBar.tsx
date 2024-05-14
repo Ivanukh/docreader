@@ -13,11 +13,11 @@ type TopBarProps = {
 function TobBar(props: TopBarProps) {
 
   return (
-    <Navbar className="bg-body-tertiary">
-      <Navbar.Text className="justify-content-start text darkviolet" style={{ marginLeft: 20 }}>
+    <Navbar bg='light'>
+      <Navbar.Text className="justify-content-start" style={{ marginLeft: 20 }}>
         <Gear className='h2' />
       </Navbar.Text>
-      <Container fluid className='justify-content-center h1 text darkviolet' style={{ margin: 5 }}>
+      <Container fluid className='justify-content-center h1' style={{ margin: 5 }}>
         {props.title}
       </Container>
       <Navbar.Text className="justify-content-end text darkviolet" style={{ marginRight: 20 }}>
