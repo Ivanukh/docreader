@@ -5,6 +5,7 @@ type SectionItemProps = {
   title: string,
   path: string,
   description?: string
+  sectionPath?: string
 
 }
 
@@ -23,19 +24,19 @@ type LeftBarProps = {
 
 
 const SectionItem = (props: SectionItemProps) =>
-  <ListGroup.Item as={NavLink} to={props.path}>
+  <ListGroup.Item as={NavLink} to={props.sectionPath + '/' + props.path} end>
     {props.title}
     {props.description && <div className='text gray small'>{props.description}</div>}
   </ListGroup.Item>
 
 const Section = (props: SectionProps) =>
   <ListGroup key={props.path} style={{ margin: 10 }} >
-    <ListGroup.Item as={NavLink} className='text-center' to={props.path} style={{}}>
+    <ListGroup.Item className='text-center' as={NavLink} end to={props.path}>
       <h6>
         {props.title}
       </h6>
     </ListGroup.Item>
-    {props.items.map((i) => <SectionItem key={`${props.path}_${i.path}`} {...i} />)}
+    {props.items.map((i) => <SectionItem key={`${props.path}_${i.path}`} {...i} sectionPath={props.path} />)}
   </ListGroup>
 
 

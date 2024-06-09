@@ -1,28 +1,34 @@
 import './App.css';
 import './bootstrap.scss'
-import TobBar from './comonents/TopBar';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Form } from 'react-bootstrap';
-import Footer from './comonents/Footer';
 import { useEffect, useState } from 'react';
-import Content from './comonents/Content';
-import { LeftBar, SectionProps } from './comonents/LeftBar';
-import { Route, Routes } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Index from './pages/Index';
+import Book from './pages/Book';
+import { Settings } from './types/Settings';
+import Layout from './pages/Layout';
+import SettingsContext from './context/SettingsContext';
+import LoaderContext from './context/LoaderContext'
 
 
-type Settings = {
-  title: string,
-  sections: SectionProps[]
-}
+const router = createBrowserRouter([
+  {
+    path: '*',
+    element: <Layout />,
+    // errorElement: <ErrorPage />,
+    children: [
+      { path: '', element: <Index /> },
+      { path: ':bookPath', element: <Book /> },
+      { path: ':bookPath/:doc', element: <Book /> },
+    ]
+  }
+]);
 
 
 function App() {
   const [settings, setSettings] = useState<Settings>({
     title: window.location.host,
-    sections: []
+    books: []
   });
-
   const [fetchCounter, setFetchCounter] = useState(0);
   const incCounter = () => setFetchCounter((prevState) => (prevState + 1));
   const decCounter = () => setFetchCounter((prevState) => (prevState - 1));
@@ -42,54 +48,17 @@ function App() {
   }, []);
 
   return (
-    <>
-      <div className="layout">
-        <TobBar title={settings.title} isLoading={fetchCounter > 0} />
-        <Row style={{
-          margin: 0,
-          padding: 0
-        }}>
-          <Col sm={3} style={{
-            borderWidth: '1px 0px 1px 1px',
-            borderStyle: 'solid',
-            borderColor: '#d4d4d5',
-            margin: 0,
-            padding: 10,
-          }}
-          >
-            <Form.Control
-              placeholder="search"
-              className='shadow-none'
-            />
-          </Col>
-          <Col className="align-middle h3 text violet" style={{
-            borderWidth: '1px 0px 1px 1px',
-            borderStyle: 'solid',
-            borderColor: '#d4d4d5',
-            margin: 0,
-            padding: 10,
-          }}
-          >
-            title
-          </Col>
+    <LoaderContext.Provider value={{
+      isLoading: () => { return fetchCounter > 0 },
+      incCounter: incCounter,
+      decCounter: decCounter,
+    }}>
 
-        </Row>
-        <div className="content">
-          <div className="left">
-            <LeftBar sections={settings.sections} />
-          </div>
-          <div className="right" style={{ padding: '20px' }}>
-            <Routes>
-              <Route path='*' element={<Content />} />
-            </Routes>
-
-
-          </div>
-        </div>
-        <Footer />
-      </div>
-    </>
-  )
+      <SettingsContext.Provider value={settings}>
+        <RouterProvider router={router} />
+      </SettingsContext.Provider>
+    </LoaderContext.Provider>
+  );
 }
 
 export default App;
