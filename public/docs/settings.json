@@ -43,7 +43,7 @@
             "items": [
                 {
                     "title": "title 2",
-                    "path": "item2"
+                    "path": "2item2"
                 }
             ]
         },
@@ -53,7 +53,7 @@
             "items": [
                 {
                     "title": "title 3",
-                    "path": "item3"
+                    "path": "3item3"
                 }
             ]
         },
@@ -63,22 +63,22 @@
             "items": [
                 {
                     "title": "title 4",
-                    "path": "item4",
+                    "path": "4item4",
                     "description": "some test description"
                 },
                 {
                     "title": "title 5",
-                    "path": "item5",
+                    "path": "5item5",
                     "description": "some test description"
                 },
                 {
                     "title": "title 6",
-                    "path": "item6",
+                    "path": "6item6",
                     "description": "some test description"
                 },
                 {
                     "title": "title 7",
-                    "path": "item7"
+                    "path": "7item7"
                 }
             ]
         }

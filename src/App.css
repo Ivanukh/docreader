@@ -76,22 +76,9 @@ body {
   height: 10px;
 }
 
-.text.white {
-  color: #FFFFFF;
-}
-
 .text.gray {
   color: #A1A1A1;
 }
-
-.text.black {
-  color: #1B1C1D;
-}
-
-.text.yellow {
-  color: #F2C61F;
-}
-
 
 .text.violet {
   color: #6435c9;

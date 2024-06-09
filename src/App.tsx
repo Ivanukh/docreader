@@ -1,5 +1,5 @@
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './bootstrap.scss'
 import TobBar from './comonents/TopBar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -8,12 +8,14 @@ import Footer from './comonents/Footer';
 import { useEffect, useState } from 'react';
 import Content from './comonents/Content';
 import { LeftBar, SectionProps } from './comonents/LeftBar';
+import { Route, Routes } from 'react-router-dom';
 
 
 type Settings = {
   title: string,
   sections: SectionProps[]
 }
+
 
 function App() {
   const [settings, setSettings] = useState<Settings>({
@@ -60,12 +62,12 @@ function App() {
               className='shadow-none'
             />
           </Col>
-          <Col className="align-middle text-center h3" style={{
+          <Col className="align-middle h3 text violet" style={{
             borderWidth: '1px 0px 1px 1px',
             borderStyle: 'solid',
             borderColor: '#d4d4d5',
             margin: 0,
-            padding: 10
+            padding: 10,
           }}
           >
             title
@@ -77,7 +79,11 @@ function App() {
             <LeftBar sections={settings.sections} />
           </div>
           <div className="right" style={{ padding: '20px' }}>
-            <Content />
+            <Routes>
+              <Route path='*' element={<Content />} />
+            </Routes>
+
+
           </div>
         </div>
         <Footer />

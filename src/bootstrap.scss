@@ -1,0 +1,31 @@
+// $violet: #422286;
+$violet: #6435c9;
+
+$primary: $violet;
+$bs-blue: $violet;
+$dropdown-link-active-bg: $violet;
+$list-group-active-bg: $violet;
+$input-focus-border-color: $violet;
+// $light: #f8f9fa;
+$light: #f0f1f2;
+
+div.list-group a:first-child {
+    background: $light;
+}
+
+div.list-group a.active:first-child {
+    background: $light;
+    background: $violet;
+
+}
+
+a.list-group-item:hover {
+    border-left-color: $violet;
+    border-right-color: $violet;
+    border-left-width: 5px;
+    border-right-width: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+@import "node_modules/bootstrap/scss/bootstrap";

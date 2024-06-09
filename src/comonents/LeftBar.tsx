@@ -1,4 +1,5 @@
 import { ListGroup } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 type SectionItemProps = {
   title: string,
@@ -21,18 +22,22 @@ type LeftBarProps = {
 
 
 
-function SectionItem(props: SectionItemProps) {
-  return <ListGroup.Item as='li' action>{props.title}{props.description && <div className='text gray small'>{props.description}</div>}
+const SectionItem = (props: SectionItemProps) =>
+  <ListGroup.Item as={NavLink} to={props.path}>
+    {props.title}
+    {props.description && <div className='text gray small'>{props.description}</div>}
   </ListGroup.Item>
-}
 
-function Section(props: SectionProps) {
-  return <ListGroup key={props.path} style={{ margin: 10 }} as='ul'>
-    <ListGroup.Item as='li' action className='text-center' variant='dark'>{props.title}</ListGroup.Item>
+const Section = (props: SectionProps) =>
+  <ListGroup key={props.path} style={{ margin: 10 }} >
+    <ListGroup.Item as={NavLink} className='text-center' to={props.path} style={{}}>
+      <h6>
+        {props.title}
+      </h6>
+    </ListGroup.Item>
     {props.items.map((i) => <SectionItem key={`${props.path}_${i.path}`} {...i} />)}
   </ListGroup>
 
-}
 
 function LeftBar(props: LeftBarProps) {
   return <>

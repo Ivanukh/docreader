@@ -36,3 +36,9 @@ export default {
 | col1  | col2  | col3   |
 | next  | next2 | next3  |
 | col1  | col2  | col3   |
+
+
+
+```shell
+service nginx restart
+```
